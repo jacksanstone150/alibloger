@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Summer Style Guide 2026 — AliBloggerSite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1a1a2e;
+    --accent: #e94560;
+    --bg: #f5f5f0;
+    --white: #ffffff;
+    --text: #1a1a2e;
+    --muted: #777;
+    --border: #e0e0d8;
+    --card: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'Source Sans 3', sans-serif; }
+
+  /* TOP BAR */
+  .topbar {
+    background: var(--primary); padding: 8px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .topbar span { color: #aaa; font-size: 12px; letter-spacing: 1px; }
+  .topbar-links { display: flex; gap: 20px; }
+  .topbar-links a { color: #aaa; font-size: 12px; text-decoration: none; }
+  .topbar-links a:hover { color: var(--accent); }
+
+  /* HEADER */
+  header {
+    background: var(--white); border-bottom: 3px solid var(--accent);
+    padding: 24px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo {
+    font-family: 'Merriweather', serif;
+    font-size: 32px; font-weight: 900; color: var(--primary);
+    text-decoration: none; letter-spacing: -1px;
+  }
+  .logo span { color: var(--accent); }
+  .header-tagline { font-size: 12px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+
+  /* NAV */
+  nav { background: var(--primary); position: sticky; top: 0; z-index: 100; }
+  .nav-inner { display: flex; align-items: center; padding: 0 60px; }
+  .nav-inner a {
+    color: #ccc; text-decoration: none; font-size: 13px;
+    letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;
+    padding: 16px 20px; display: block;
+    transition: color 0.2s, background 0.2s;
+    border-bottom: 3px solid transparent;
+  }
+  .nav-inner a:hover, .nav-inner a.active { color: #fff; border-bottom-color: var(--accent); background: rgba(255,255,255,0.04); }
+
+  /* BREADCRUMB */
+  .breadcrumb {
+    padding: 16px 60px; font-size: 13px; color: var(--muted);
+    background: var(--white); border-bottom: 1px solid var(--border);
+  }
+  .breadcrumb a { color: var(--muted); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--accent); }
+  .breadcrumb span { color: var(--accent); margin: 0 8px; }
+
+  /* ARTICLE LAYOUT */
+  .article-layout {
+    display: grid; grid-template-columns: 1fr 320px;
+    gap: 40px; padding: 50px 60px; max-width: 1400px; margin: 0 auto;
+  }
+
+  /* ARTICLE MAIN */
+  .article-main {}
+
+  /* ARTICLE HEADER */
+  .article-header { margin-bottom: 36px; }
+  .art-cat-tag {
+    display: inline-block; background: #cc0066; color: #fff;
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    font-weight: 700; padding: 5px 14px; border-radius: 2px; margin-bottom: 18px;
+  }
+  .article-header h1 {
+    font-family: 'Merriweather', serif;
+    font-size: 42px; font-weight: 900; line-height: 1.2;
+    color: var(--primary); margin-bottom: 18px;
+  }
+  .article-header .intro {
+    font-size: 19px; color: var(--muted); line-height: 1.7;
+    font-style: italic; border-left: 4px solid var(--accent);
+    padding-left: 20px; margin-bottom: 24px;
+  }
+  .article-meta {
+    display: flex; align-items: center; gap: 20px;
+    padding: 18px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  .author-avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--primary); display: flex; align-items: center; justify-content: center;
+    font-family: 'Merriweather', serif; font-size: 20px; font-weight: 900; color: var(--accent);
+    flex-shrink: 0;
+  }
+  .meta-info {}
+  .meta-author { font-size: 15px; font-weight: 700; color: var(--primary); }
+  .meta-details { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .meta-tags { margin-left: auto; display: flex; gap: 8px; }
+  .meta-tag {
+    background: var(--bg); border: 1px solid var(--border);
+    font-size: 11px; color: var(--muted); padding: 5px 12px;
+    border-radius: 2px; font-weight: 600;
+  }
+
+  /* FEATURED IMAGE */
+  .featured-image {
+    width: 100%; height: 380px;
+    background: linear-gradient(135deg, #ffeef5 0%, #ffcce0 50%, #ffe0ee 100%);
+    border-radius: 4px; margin-bottom: 36px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 100px; position: relative; overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .featured-image .img-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: rgba(0,0,0,0.5); color: #fff;
+    font-size: 12px; padding: 10px 16px; text-align: center;
+  }
+
+  /* ARTICLE BODY */
+  .article-body { font-size: 17px; line-height: 1.85; color: #333; }
+  .article-body h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 26px; font-weight: 700; color: var(--primary);
+    margin: 40px 0 16px; padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+  }
+  .article-body h3 {
+    font-family: 'Merriweather', serif;
+    font-size: 20px; font-weight: 700; color: var(--primary);
+    margin: 30px 0 12px;
+  }
+  .article-body p { margin-bottom: 20px; }
+  .article-body ul, .article-body ol {
+    margin: 20px 0 20px 28px;
+  }
+  .article-body li { margin-bottom: 10px; line-height: 1.7; }
+  .article-body strong { color: var(--primary); font-weight: 700; }
+
+  /* TIP BOX */
+  .tip-box {
+    background: #fff8f0; border: 1px solid #f0d0a0;
+    border-left: 5px solid #e07020;
+    border-radius: 4px; padding: 20px 24px; margin: 28px 0;
+  }
+  .tip-box .tip-label {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 700; color: #e07020; margin-bottom: 8px;
+  }
+  .tip-box p { font-size: 15px; color: #555; margin: 0; line-height: 1.7; }
+
+  /* QUOTE BOX */
+  .quote-box {
+    background: var(--primary); color: #fff;
+    border-radius: 4px; padding: 32px 36px; margin: 32px 0;
+    position: relative;
+  }
+  .quote-box::before {
+    content: '"'; font-family: 'Merriweather', serif;
+    font-size: 80px; color: var(--accent); position: absolute;
+    top: -10px; left: 24px; line-height: 1;
+  }
+  .quote-box p {
+    font-family: 'Merriweather', serif;
+    font-size: 20px; font-style: italic; line-height: 1.6;
+    margin: 0 0 12px 0; padding-top: 20px; color: #fff;
+  }
+  .quote-box cite { font-size: 13px; color: #aaa; font-style: normal; }
+
+  /* STYLE CARD */
+  .style-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 28px 0; }
+  .style-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 4px; padding: 22px;
+    border-top: 4px solid var(--accent);
+  }
+  .style-card .icon { font-size: 32px; margin-bottom: 12px; }
+  .style-card h4 {
+    font-family: 'Merriweather', serif;
+    font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 8px;
+  }
+  .style-card p { font-size: 14px; color: var(--muted); line-height: 1.6; margin: 0; }
+
+  /* ARTICLE FOOTER */
+  .article-footer {
+    margin-top: 50px; padding-top: 30px; border-top: 2px solid var(--border);
+  }
+  .tags-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px; }
+  .tag {
+    background: var(--bg); border: 1px solid var(--border);
+    font-size: 12px; color: var(--muted); padding: 6px 14px;
+    border-radius: 2px; text-decoration: none; font-weight: 600;
+    transition: all 0.2s;
+  }
+  .tag:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  /* AUTHOR BOX */
+  .author-box {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 4px; padding: 28px; display: flex; gap: 22px;
+    margin-bottom: 40px;
+  }
+  .author-box-avatar {
+    width: 80px; height: 80px; border-radius: 50%; flex-shrink: 0;
+    background: var(--primary); display: flex; align-items: center; justify-content: center;
+    font-family: 'Merriweather', serif; font-size: 32px; font-weight: 900; color: var(--accent);
+  }
+  .author-box-info h4 {
+    font-family: 'Merriweather', serif;
+    font-size: 18px; font-weight: 700; color: var(--primary); margin-bottom: 6px;
+  }
+  .author-box-info .role { font-size: 12px; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; font-weight: 700; margin-bottom: 10px; }
+  .author-box-info p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+  /* RELATED ARTICLES */
+  .related { margin-top: 50px; }
+  .sec-title {
+    display: flex; align-items: center; gap: 14px; margin-bottom: 24px;
+  }
+  .sec-title h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 18px; font-weight: 900; color: var(--primary);
+    text-transform: uppercase; letter-spacing: 1px; white-space: nowrap;
+  }
+  .sec-title .line { flex: 1; height: 2px; background: var(--border); }
+  .sec-title .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+  .related-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .related-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 4px; overflow: hidden; transition: box-shadow 0.3s;
+  }
+  .related-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+  .related-img {
+    height: 130px; display: flex; align-items: center; justify-content: center; font-size: 40px;
+  }
+  .related-img.health { background: linear-gradient(135deg, #fff5ee, #ffe0cc); }
+  .related-img.tech { background: linear-gradient(135deg, #eef5ff, #cce0ff); }
+  .related-img.business { background: linear-gradient(135deg, #eefff5, #ccffe0); }
+  .related-body { padding: 16px; }
+  .related-cat { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; margin-bottom: 6px; color: var(--accent); }
+  .related-body h4 {
+    font-family: 'Merriweather', serif;
+    font-size: 14px; font-weight: 700; line-height: 1.4; color: var(--primary);
+  }
+  .related-body h4 a { text-decoration: none; color: inherit; }
+  .related-body h4 a:hover { color: var(--accent); }
+
+  /* SIDEBAR */
+  .sidebar { display: flex; flex-direction: column; gap: 32px; }
+  .sidebar-widget { background: var(--card); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+  .widget-title {
+    background: var(--primary); color: #fff;
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    font-weight: 700; padding: 14px 20px;
+  }
+  .widget-body { padding: 20px; }
+  .popular-item {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 12px 0; border-bottom: 1px solid var(--border);
+  }
+  .popular-item:last-child { border-bottom: none; }
+  .pop-num { font-family: 'Merriweather', serif; font-size: 28px; font-weight: 900; color: var(--border); line-height: 1; flex-shrink: 0; }
+  .pop-title { font-size: 14px; font-weight: 600; color: var(--primary); line-height: 1.4; margin-bottom: 4px; }
+  .pop-cat { font-size: 11px; color: var(--muted); }
+  .cat-list { list-style: none; }
+  .cat-list li { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .cat-list li:last-child { border-bottom: none; }
+  .cat-list a { text-decoration: none; font-size: 14px; font-weight: 600; color: var(--primary); }
+  .cat-list a:hover { color: var(--accent); }
+  .cat-count { background: var(--bg); border: 1px solid var(--border); font-size: 11px; font-weight: 700; color: var(--muted); padding: 2px 8px; border-radius: 12px; }
+  .newsletter-form { display: flex; flex-direction: column; gap: 12px; }
+  .newsletter-form p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .newsletter-form input { border: 2px solid var(--border); border-radius: 4px; padding: 10px 14px; font-size: 14px; font-family: 'Source Sans 3', sans-serif; outline: none; width: 100%; }
+  .newsletter-form input:focus { border-color: var(--accent); }
+  .newsletter-form button { background: var(--accent); color: #fff; border: none; padding: 12px; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; cursor: pointer; border-radius: 4px; transition: background 0.2s; }
+  .newsletter-form button:hover { background: #c73652; }
+
+  /* FOOTER */
+  footer { background: var(--primary); color: #aaa; margin-top: 60px; }
+  .footer-bottom { padding: 24px 60px; text-align: center; font-size: 12px; color: #555; }
+  .footer-bottom span { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span>Thursday, April 30, 2026</span>
+  <div class="topbar-links">
+    <a href="#">About Us</a>
+    <a href="#">Contact</a>
+    <a href="#">Privacy Policy</a>
+  </div>
+</div>
+
+<header>
+  <div>
+    <a class="logo" href="index.html">Ali<span>Blogger</span>Site</a>
+    <div class="header-tagline">Health &bull; Tech &bull; Fashion &bull; Business</div>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html">Home</a>
+    <a href="#">Health</a>
+    <a href="#">Tech</a>
+    <a href="#" class="active">Fashion</a>
+    <a href="#">Business</a>
+    <a href="#">About Us</a>
+    <a href="#">Contact</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span>›</span>
+  <a href="#">Fashion</a>
+  <span>›</span>
+  Summer Style Guide 2026
+</div>
+
+<div class="article-layout">
+  <main class="article-main">
+
+    <!-- ARTICLE HEADER -->
+    <div class="article-header">
+      <span class="art-cat-tag">&#9670; Fashion</span>
+      <h1>Summer Style Guide 2026 — Top 7 Fashion Trends Every Man &amp; Woman Should Know</h1>
+      <p class="intro">Summer 2026 is here and fashion has never been more exciting. From bold colors to breathable fabrics — here is everything you need to look your best this season without breaking the bank.</p>
+      <div class="article-meta">
+        <div class="author-avatar">A</div>
+        <div class="meta-info">
+          <div class="meta-author">Ali Khan</div>
+          <div class="meta-details">April 30, 2026 &bull; 7 min read &bull; Fashion</div>
+        </div>
+        <div class="meta-tags">
+          <span class="meta-tag">Fashion</span>
+          <span class="meta-tag">Summer 2026</span>
+          <span class="meta-tag">Style</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURED IMAGE -->
+    <div style="margin-bottom:32px; border-radius:6px; overflow:hidden; border:1px solid var(--border); box-shadow: 0 4px 24px rgba(0,0,0,0.10);">
+      <img src="summer-fashion-banner.png" alt="Summer Fashion Trends 2026 — AliBloggerSite" style="width:100%; display:block;">
+    </div>
+
+    <!-- ARTICLE BODY -->
+    <div class="article-body">
+
+      <p>Every year summer brings new colors, new silhouettes, and new ways to express yourself through clothing. Summer 2026 is no different — in fact, this year's trends are some of the most exciting we have seen in a long time. Whether you are shopping in Lahore, Karachi, or Faisalabad, these trends are easy to find and even easier to style.</p>
+
+      <p>In this complete guide, we break down the <strong>top 7 summer fashion trends of 2026</strong> with practical tips on how to wear them, where to find them, and how to make them work for your body type and budget. And if you are looking for <strong>high-quality custom-stitched suits and ready-made outfits</strong>, do check out <a href="https://faziibrand.vercel.app/" target="_blank" style="color:var(--accent); font-weight:700; text-decoration:underline;">FAZII Brand</a> — Faisalabad's top fashion brand with new collections every week.</p>
+
+      <h2>1. Breathable Fabrics Are Everything This Summer</h2>
+      <p>The number one rule of summer fashion is comfort. And comfort in summer means choosing the right fabric. In 2026, <strong>lawn, linen, and cotton</strong> are the kings and queens of summer fashion. These fabrics allow your skin to breathe, keep you cool in the heat, and still look incredibly stylish.</p>
+
+      <div class="tip-box">
+        <div class="tip-label">&#9670; Pro Tip</div>
+        <p>Always check the fabric label before buying. 100% cotton or lawn is ideal for Pakistani summers. Avoid polyester blends as they trap heat and cause sweating.</p>
+      </div>
+
+      <h2>2. Bold and Bright Colors Are Back</h2>
+      <p>Gone are the days of playing it safe with whites and beiges. Summer 2026 is all about <strong>bold, confident colors</strong>. Think electric blue, coral orange, emerald green, and hot pink. These colors photograph beautifully and instantly elevate any outfit.</p>
+
+      <p>If you are new to wearing bold colors, start small. Add a bright dupatta, a colorful shirt, or a statement accessory to your usual outfit. You do not need to go all out — even one bold piece can completely transform your look.</p>
+
+      <div class="style-cards">
+        <div class="style-card">
+          <div class="icon">🔵</div>
+          <h4>Electric Blue</h4>
+          <p>Works beautifully with white, gold, and cream. Perfect for casual outings and formal events alike.</p>
+        </div>
+        <div class="style-card">
+          <div class="icon">🟠</div>
+          <h4>Coral Orange</h4>
+          <p>The color of summer 2026. Pairs perfectly with ivory and sand tones for a fresh, modern look.</p>
+        </div>
+        <div class="style-card">
+          <div class="icon">🟢</div>
+          <h4>Emerald Green</h4>
+          <p>Elegant and rich. Works for both day and evening wear. Pairs well with gold jewelry.</p>
+        </div>
+        <div class="style-card">
+          <div class="icon">🩷</div>
+          <h4>Hot Pink</h4>
+          <p>Bold, fun, and absolutely trending. Great for casual everyday looks and summer parties.</p>
+        </div>
+      </div>
+
+      <h2>3. Oversized and Relaxed Fits</h2>
+      <p>Tight, fitted clothing is taking a back seat this summer. The trend in 2026 is <strong>relaxed, oversized silhouettes</strong> that look effortlessly cool while keeping you comfortable in the heat. Oversized shirts, wide-leg trousers, and flowy kurtis are everywhere this season.</p>
+
+      <p>The key to pulling off an oversized look is balance. If you are wearing a loose top, pair it with fitted bottoms. If you are wearing wide trousers, tuck in your shirt. This creates a clean, intentional look rather than appearing like you are wearing clothes that do not fit.</p>
+
+      <div class="quote-box">
+        <p>Fashion is not about wearing expensive clothes. It is about wearing the right clothes in the right way at the right time.</p>
+        <cite>— Style Philosophy, AliBloggerSite</cite>
+      </div>
+
+      <h2>4. Minimalist Accessories Are In</h2>
+      <p>This summer, less is more when it comes to accessories. The trend is shifting away from heavy, chunky jewelry towards <strong>simple, delicate pieces</strong> that complement rather than overpower your outfit. Think thin gold chains, small hoop earrings, and simple leather belts.</p>
+
+      <p>For men, a clean watch and a simple leather bracelet is all you need. For women, layering two or three thin necklaces creates a modern, editorial look that is very on trend for 2026.</p>
+
+      <h2>5. Printed Dupattas and Scarves</h2>
+      <p>In Pakistani fashion specifically, <strong>printed dupattas</strong> are having a massive moment in summer 2026. Geometric prints, floral patterns, and abstract designs in bold colors are being paired with simple, solid-colored suits to create striking contrast looks.</p>
+
+      <ul>
+        <li>Pair a geometric printed dupatta with a plain white kameez for an effortlessly chic look</li>
+        <li>Choose dupattas in contrasting colors — not matching — for a modern editorial effect</li>
+        <li>Lightweight chiffon and lawn dupattas are perfect for summer heat</li>
+        <li>Bold border prints are especially trending — look for thick embroidered or printed borders</li>
+      </ul>
+
+      <h2>6. Comfortable Footwear Takes Center Stage</h2>
+      <p>Your feet deserve comfort in summer. The biggest footwear trend of 2026 is <strong>stylish comfort</strong> — sandals, slides, and platform shoes that look great but do not hurt your feet. High heels are being replaced by comfortable block heels and platform sandals that offer height without the pain.</p>
+
+      <div class="tip-box">
+        <div class="tip-label">&#9670; Budget Tip</div>
+        <p>You do not need to spend a lot on footwear. Local markets in Lahore and Karachi have excellent quality sandals and khussas that look amazing and cost a fraction of branded prices.</p>
+      </div>
+
+      <h2>7. Sustainable Fashion Is the Future</h2>
+      <p>The biggest shift in fashion globally — and now in Pakistan too — is towards <strong>sustainable, conscious fashion</strong>. Instead of buying many cheap clothes that fall apart quickly, people are investing in fewer, higher-quality pieces that last for years. This is better for your wallet and better for the environment.</p>
+
+      <p>Look for local Pakistani designers and artisans who use natural fabrics and traditional craftsmanship. Buying local not only supports Pakistani businesses but also gives you unique, high-quality pieces that mass-market brands simply cannot match.</p>
+
+      <h2>Final Thoughts</h2>
+      <p>Summer 2026 is a fantastic time to experiment with your style. Whether you go bold with electric colors, keep it cool in breathable fabrics, or invest in minimalist accessories, the most important thing is to wear what makes you feel confident and comfortable.</p>
+
+      <p>Fashion is personal. These trends are guides, not rules. Take what works for you, leave what does not, and always dress in a way that reflects your own personality. That is the true definition of style.</p>
+
+    </div>
+
+    <!-- TAGS -->
+    <div class="article-footer">
+      <div class="tags-row">
+        <a href="#" class="tag">Fashion</a>
+        <a href="#" class="tag">Summer 2026</a>
+        <a href="#" class="tag">Style Guide</a>
+        <a href="#" class="tag">Pakistan Fashion</a>
+        <a href="#" class="tag">Lawn Suits</a>
+        <a href="#" class="tag">Trending</a>
+        <a href="#" class="tag">Outfit Ideas</a>
+      </div>
+
+      <!-- AUTHOR BOX -->
+      <div class="author-box">
+        <div class="author-box-avatar">A</div>
+        <div class="author-box-info">
+          <h4>Ali Khan</h4>
+          <div class="role">Founder &amp; Editor — AliBloggerSite</div>
+          <p>Ali Khan is the founder of AliBloggerSite. He writes about Fashion, Health, Technology, and Business. Based in Pakistan, he is passionate about creating helpful, honest content for everyday readers.</p>
+        </div>
+      </div>
+
+      <!-- RELATED -->
+      <div class="related">
+        <div class="sec-title">
+          <div class="dot"></div>
+          <h2>Related Articles</h2>
+          <div class="line"></div>
+        </div>
+        <div class="related-grid">
+          <div class="related-card">
+            <div class="related-img health">🏃</div>
+            <div class="related-body">
+              <div class="related-cat">Health</div>
+              <h4><a href="#">5 Morning Exercises That Burn More Fat Than Running</a></h4>
+            </div>
+          </div>
+          <div class="related-card">
+            <div class="related-img tech">💻</div>
+            <div class="related-body">
+              <div class="related-cat">Tech</div>
+              <h4><a href="#">Best Free AI Tools for Students and Freelancers in 2026</a></h4>
+            </div>
+          </div>
+          <div class="related-card">
+            <div class="related-img business">📈</div>
+            <div class="related-body">
+              <div class="related-cat">Business</div>
+              <h4><a href="#">Freelancing in Pakistan — How to Earn in Dollars From Home</a></h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-widget">
+      <div class="widget-title">Popular Articles</div>
+      <div class="widget-body">
+        <div class="popular-item">
+          <div class="pop-num">01</div>
+          <div>
+            <div class="pop-title">10 Daily Habits That Transform Your Health</div>
+            <div class="pop-cat">Health &bull; 8 min read</div>
+          </div>
+        </div>
+        <div class="popular-item">
+          <div class="pop-num">02</div>
+          <div>
+            <div class="pop-title">Best Free AI Tools for Students 2026</div>
+            <div class="pop-cat">Tech &bull; 5 min read</div>
+          </div>
+        </div>
+        <div class="popular-item">
+          <div class="pop-num">03</div>
+          <div>
+            <div class="pop-title">Freelancing in Pakistan — Earn in Dollars</div>
+            <div class="pop-cat">Business &bull; 6 min read</div>
+          </div>
+        </div>
+        <div class="popular-item">
+          <div class="pop-num">04</div>
+          <div>
+            <div class="pop-title">Summer Style Guide 2026</div>
+            <div class="pop-cat">Fashion &bull; 7 min read</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-widget">
+      <div class="widget-title">Categories</div>
+      <div class="widget-body">
+        <ul class="cat-list">
+          <li><a href="#">&#9670; Health</a><span class="cat-count">24</span></li>
+          <li><a href="#">&#9670; Technology</a><span class="cat-count">18</span></li>
+          <li><a href="#">&#9670; Fashion</a><span class="cat-count">15</span></li>
+          <li><a href="#">&#9670; Business</a><span class="cat-count">21</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sidebar-widget">
+      <div class="widget-title">Newsletter</div>
+      <div class="widget-body">
+        <div class="newsletter-form">
+          <p>Get the latest articles delivered straight to your inbox every week.</p>
+          <input type="email" placeholder="Your email address">
+          <button>Subscribe Now</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <div class="footer-bottom">
+    Copyright &copy; 2026 <span>AliBloggerSite</span>. All Rights Reserved.
+  </div>
+</footer>
+
+</body>
+</html>
