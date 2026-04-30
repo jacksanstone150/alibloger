@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AliBloggerSite — Health, Tech, Fashion & Business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1a1a2e;
+    --accent: #e94560;
+    --accent2: #0f3460;
+    --bg: #f5f5f0;
+    --white: #ffffff;
+    --text: #1a1a2e;
+    --muted: #777;
+    --border: #e0e0d8;
+    --card: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'Source Sans 3', sans-serif; }
+
+  /* TOP BAR */
+  .topbar {
+    background: var(--primary);
+    padding: 8px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .topbar span { color: #aaa; font-size: 12px; letter-spacing: 1px; }
+  .topbar-links { display: flex; gap: 20px; }
+  .topbar-links a { color: #aaa; font-size: 12px; text-decoration: none; }
+  .topbar-links a:hover { color: var(--accent); }
+
+  /* HEADER */
+  header {
+    background: var(--white);
+    border-bottom: 3px solid var(--accent);
+    padding: 24px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo {
+    font-family: 'Merriweather', serif;
+    font-size: 32px; font-weight: 900; color: var(--primary);
+    text-decoration: none; letter-spacing: -1px;
+  }
+  .logo span { color: var(--accent); }
+  .header-tagline { font-size: 12px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+  .header-search {
+    display: flex; align-items: center;
+    border: 2px solid var(--border); border-radius: 4px; overflow: hidden;
+  }
+  .header-search input {
+    border: none; outline: none; padding: 10px 16px; font-size: 14px;
+    font-family: 'Source Sans 3', sans-serif; background: var(--bg); width: 220px;
+  }
+  .header-search button {
+    background: var(--accent); border: none; color: #fff;
+    padding: 10px 16px; cursor: pointer; font-size: 16px;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--primary);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .nav-inner {
+    display: flex; align-items: center;
+    padding: 0 60px;
+  }
+  .nav-inner a {
+    color: #ccc; text-decoration: none; font-size: 13px;
+    letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;
+    padding: 16px 20px; display: block;
+    transition: color 0.2s, background 0.2s;
+    border-bottom: 3px solid transparent;
+  }
+  .nav-inner a:hover, .nav-inner a.active {
+    color: #fff; border-bottom-color: var(--accent);
+    background: rgba(255,255,255,0.04);
+  }
+
+  /* HERO */
+  .hero-grid {
+    display: grid; grid-template-columns: 2fr 1fr;
+    gap: 2px; background: var(--border);
+    margin-bottom: 2px;
+  }
+  .hero-main {
+    background: var(--primary);
+    padding: 70px 60px;
+    position: relative; overflow: hidden; min-height: 480px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+  }
+  .hero-main::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,26,46,0.97) 40%, rgba(26,26,46,0.5) 100%);
+    z-index: 1;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #0f3460 0%, #16213e 50%, #1a1a2e 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 180px; color: rgba(233,69,96,0.08);
+    font-family: 'Merriweather', serif; font-weight: 900;
+  }
+  .hero-main-content { position: relative; z-index: 2; }
+  .hero-cat {
+    display: inline-block; background: var(--accent); color: #fff;
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    font-weight: 700; padding: 5px 14px; margin-bottom: 18px; border-radius: 2px;
+  }
+  .hero-main h1 {
+    font-family: 'Merriweather', serif;
+    font-size: 42px; font-weight: 900; color: #fff; line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .hero-main p { color: #bbb; font-size: 16px; line-height: 1.7; margin-bottom: 24px; max-width: 520px; }
+  .hero-meta { display: flex; gap: 16px; align-items: center; }
+  .hero-author { color: #fff; font-size: 13px; font-weight: 600; }
+  .hero-date { color: #888; font-size: 12px; }
+  .hero-read {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent); color: #fff; text-decoration: none;
+    font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+    font-weight: 700; padding: 12px 24px; border-radius: 2px;
+    margin-top: 20px; transition: background 0.2s; width: fit-content;
+  }
+  .hero-read:hover { background: #c73652; }
+
+  /* HERO SIDE */
+  .hero-side { display: flex; flex-direction: column; gap: 2px; }
+  .hero-side-card {
+    background: var(--white); padding: 28px 28px;
+    flex: 1; border-left: 4px solid transparent;
+    transition: border-color 0.2s;
+    cursor: pointer;
+  }
+  .hero-side-card:hover { border-left-color: var(--accent); }
+  .side-cat {
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 700; margin-bottom: 10px;
+  }
+  .side-cat.tech { color: #0066cc; }
+  .side-cat.business { color: #00996e; }
+  .side-cat.health { color: #cc6600; }
+  .hero-side-card h3 {
+    font-family: 'Merriweather', serif;
+    font-size: 17px; font-weight: 700; line-height: 1.4;
+    color: var(--primary); margin-bottom: 10px;
+  }
+  .hero-side-card p { color: var(--muted); font-size: 13px; line-height: 1.6; }
+  .side-date { font-size: 11px; color: #bbb; margin-top: 12px; }
+
+  /* MAIN LAYOUT */
+  .main-layout {
+    display: grid; grid-template-columns: 1fr 320px;
+    gap: 40px; padding: 50px 60px; max-width: 1400px; margin: 0 auto;
+  }
+
+  /* SECTION TITLE */
+  .sec-title {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 28px;
+  }
+  .sec-title h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 20px; font-weight: 900; color: var(--primary);
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .sec-title .line { flex: 1; height: 2px; background: var(--border); }
+  .sec-title .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+
+  /* ARTICLE CARDS */
+  .articles-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 50px; }
+  .article-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 4px; overflow: hidden;
+    transition: box-shadow 0.3s, transform 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .article-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.1); transform: translateY(-3px); }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .article-card:nth-child(1) { animation-delay: 0.1s; }
+  .article-card:nth-child(2) { animation-delay: 0.2s; }
+  .article-card:nth-child(3) { animation-delay: 0.3s; }
+  .article-card:nth-child(4) { animation-delay: 0.4s; }
+  .article-card:nth-child(5) { animation-delay: 0.5s; }
+  .article-card:nth-child(6) { animation-delay: 0.6s; }
+
+  .art-img {
+    height: 190px; display: flex; align-items: center; justify-content: center;
+    font-size: 56px; position: relative;
+  }
+  .art-img.health { background: linear-gradient(135deg, #fff5ee, #ffe0cc); }
+  .art-img.tech { background: linear-gradient(135deg, #eef5ff, #cce0ff); }
+  .art-img.fashion { background: linear-gradient(135deg, #ffeef5, #ffcce0); }
+  .art-img.business { background: linear-gradient(135deg, #eefff5, #ccffe0); }
+  .art-cat-badge {
+    position: absolute; top: 12px; left: 12px;
+    font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 700; padding: 4px 10px; border-radius: 2px; color: #fff;
+  }
+  .art-cat-badge.health { background: #e07020; }
+  .art-cat-badge.tech { background: #0066cc; }
+  .art-cat-badge.fashion { background: #cc0066; }
+  .art-cat-badge.business { background: #00804e; }
+
+  .art-body { padding: 22px; }
+  .art-body h3 {
+    font-family: 'Merriweather', serif;
+    font-size: 17px; font-weight: 700; line-height: 1.4;
+    color: var(--primary); margin-bottom: 10px;
+  }
+  .art-body h3 a { color: inherit; text-decoration: none; }
+  .art-body h3 a:hover { color: var(--accent); }
+  .art-body p { color: var(--muted); font-size: 13px; line-height: 1.7; margin-bottom: 16px; }
+  .art-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--border); padding: 14px 22px;
+  }
+  .art-author { font-size: 12px; font-weight: 600; color: var(--primary); }
+  .art-date { font-size: 11px; color: #bbb; }
+  .art-link {
+    color: var(--accent); font-size: 11px; font-weight: 700;
+    text-decoration: none; letter-spacing: 1px; text-transform: uppercase;
+  }
+  .art-link:hover { text-decoration: underline; }
+
+  /* LIST ARTICLES */
+  .list-articles { display: flex; flex-direction: column; gap: 20px; margin-bottom: 50px; }
+  .list-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 4px; display: flex; overflow: hidden;
+    transition: box-shadow 0.3s;
+  }
+  .list-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+  .list-img {
+    width: 130px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 40px;
+  }
+  .list-img.health { background: linear-gradient(135deg, #fff5ee, #ffe0cc); }
+  .list-img.tech { background: linear-gradient(135deg, #eef5ff, #cce0ff); }
+  .list-img.fashion { background: linear-gradient(135deg, #ffeef5, #ffcce0); }
+  .list-img.business { background: linear-gradient(135deg, #eefff5, #ccffe0); }
+  .list-body { padding: 20px; flex: 1; }
+  .list-cat { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
+  .list-cat.health { color: #e07020; }
+  .list-cat.tech { color: #0066cc; }
+  .list-cat.fashion { color: #cc0066; }
+  .list-cat.business { color: #00804e; }
+  .list-body h3 {
+    font-family: 'Merriweather', serif;
+    font-size: 16px; font-weight: 700; line-height: 1.4;
+    color: var(--primary); margin-bottom: 8px;
+  }
+  .list-body p { color: var(--muted); font-size: 13px; line-height: 1.6; }
+  .list-meta { font-size: 11px; color: #bbb; margin-top: 10px; }
+
+  /* SIDEBAR */
+  .sidebar { display: flex; flex-direction: column; gap: 32px; }
+  .sidebar-widget { background: var(--card); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+  .widget-title {
+    background: var(--primary); color: #fff;
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    font-weight: 700; padding: 14px 20px;
+  }
+  .widget-body { padding: 20px; }
+  .popular-item {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 12px 0; border-bottom: 1px solid var(--border);
+  }
+  .popular-item:last-child { border-bottom: none; }
+  .pop-num {
+    font-family: 'Merriweather', serif;
+    font-size: 28px; font-weight: 900; color: var(--border); line-height: 1; flex-shrink: 0;
+  }
+  .pop-title { font-size: 14px; font-weight: 600; color: var(--primary); line-height: 1.4; margin-bottom: 4px; }
+  .pop-cat { font-size: 11px; color: var(--muted); }
+
+  .cat-list { list-style: none; }
+  .cat-list li {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 0; border-bottom: 1px solid var(--border);
+  }
+  .cat-list li:last-child { border-bottom: none; }
+  .cat-list a { text-decoration: none; font-size: 14px; font-weight: 600; color: var(--primary); }
+  .cat-list a:hover { color: var(--accent); }
+  .cat-count {
+    background: var(--bg); border: 1px solid var(--border);
+    font-size: 11px; font-weight: 700; color: var(--muted);
+    padding: 2px 8px; border-radius: 12px;
+  }
+  .newsletter-form { display: flex; flex-direction: column; gap: 12px; }
+  .newsletter-form p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .newsletter-form input {
+    border: 2px solid var(--border); border-radius: 4px;
+    padding: 10px 14px; font-size: 14px; font-family: 'Source Sans 3', sans-serif;
+    outline: none; width: 100%;
+  }
+  .newsletter-form input:focus { border-color: var(--accent); }
+  .newsletter-form button {
+    background: var(--accent); color: #fff; border: none;
+    padding: 12px; font-size: 13px; letter-spacing: 1px; text-transform: uppercase;
+    font-weight: 700; cursor: pointer; border-radius: 4px; transition: background 0.2s;
+  }
+  .newsletter-form button:hover { background: #c73652; }
+
+  /* TAGS */
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    background: var(--bg); border: 1px solid var(--border);
+    font-size: 12px; color: var(--muted); padding: 6px 14px;
+    border-radius: 2px; text-decoration: none; font-weight: 600;
+    transition: all 0.2s;
+  }
+  .tag:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  /* FOOTER */
+  footer {
+    background: var(--primary); color: #aaa;
+    margin-top: 60px;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px; padding: 60px 60px 40px;
+  }
+  .footer-brand .logo { color: #fff; display: block; margin-bottom: 14px; }
+  .footer-brand p { font-size: 13px; line-height: 1.7; color: #888; }
+  .footer-col h4 {
+    color: #fff; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 18px; font-weight: 700;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col a { color: #888; text-decoration: none; font-size: 13px; }
+  .footer-col a:hover { color: var(--accent); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 20px 60px; text-align: center; font-size: 12px; color: #555;
+  }
+  .footer-bottom span { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span>Thursday, April 30, 2026</span>
+  <div class="topbar-links">
+    <a href="#">About Us</a>
+    <a href="#">Contact</a>
+    <a href="#">Privacy Policy</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div>
+    <a class="logo" href="#">Ali<span>Blogger</span>Site</a>
+    <div class="header-tagline">Health &bull; Tech &bull; Fashion &bull; Business</div>
+  </div>
+  <div class="header-search">
+    <input type="text" placeholder="Search articles...">
+    <button>&#128269;</button>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="active">Home</a>
+    <a href="#">Health</a>
+    <a href="#">Tech</a>
+    <a href="#">Fashion</a>
+    <a href="#">Business</a>
+    <a href="#">About Us</a>
+    <a href="#">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero-grid">
+  <div class="hero-main">
+    <div class="hero-bg">✦</div>
+    <div class="hero-main-content">
+      <span class="hero-cat">&#9670; Featured &mdash; Health</span>
+      <h1>10 Daily Habits That Will Transform Your Health in 2026</h1>
+      <p>Small changes, massive results. These science-backed daily habits are proven to boost your energy, mental clarity, and overall wellbeing starting from day one.</p>
+      <div class="hero-meta">
+        <span class="hero-author">By Ali Khan</span>
+        <span class="hero-date">April 30, 2026</span>
+      </div>
+      <a href="#" class="hero-read">Read Full Article &rarr;</a>
+    </div>
+  </div>
+  <div class="hero-side">
+    <div class="hero-side-card">
+      <div class="side-cat tech">&#9670; Technology</div>
+      <h3>AI Tools That Are Changing How We Work in 2026</h3>
+      <p>From writing to coding — these AI tools are saving hours every day for professionals worldwide.</p>
+      <div class="side-date">April 28, 2026</div>
+    </div>
+    <div class="hero-side-card">
+      <div class="side-cat business">&#9670; Business</div>
+      <h3>How to Start a Profitable Online Business With Zero Investment</h3>
+      <p>Real strategies, real results. This guide covers everything from finding your niche to making your first sale.</p>
+      <div class="side-date">April 26, 2026</div>
+    </div>
+    <div class="hero-side-card">
+      <div class="side-cat health" style="color:#cc6600">&#9670; Fashion</div>
+      <h3>Top 7 Fashion Trends You Need to Follow This Summer</h3>
+      <p>Stay ahead of the curve with this season's most stylish and wearable fashion trends.</p>
+      <div class="side-date">April 24, 2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main-layout">
+  <div class="content">
+
+    <!-- LATEST ARTICLES -->
+    <div class="sec-title">
+      <div class="dot"></div>
+      <h2>Latest Articles</h2>
+      <div class="line"></div>
+    </div>
+    <div class="articles-grid">
+
+      <div class="article-card">
+        <div class="art-img health">
+          🏃
+          <div class="art-cat-badge health">Health</div>
+        </div>
+        <div class="art-body">
+          <h3><a href="#">5 Morning Exercises That Burn More Fat Than Running</a></h3>
+          <p>Skip the treadmill. These five short exercises done before breakfast activate your metabolism all day long.</p>
+        </div>
+        <div class="art-footer">
+          <div>
+            <div class="art-author">Ali Khan</div>
+            <div class="art-date">April 29, 2026</div>
+          </div>
+          <a href="#" class="art-link">Read →</a>
+        </div>
+      </div>
+
+      <div class="article-card">
+        <div class="art-img tech">
+          💻
+          <div class="art-cat-badge tech">Tech</div>
+        </div>
+        <div class="art-body">
+          <h3><a href="#">Best Free AI Tools for Students and Freelancers in 2026</a></h3>
+          <p>These completely free tools are helping millions of people save time, learn faster, and earn more money online.</p>
+        </div>
+        <div class="art-footer">
+          <div>
+            <div class="art-author">Ali Khan</div>
+            <div class="art-date">April 27, 2026</div>
+          </div>
+          <a href="#" class="art-link">Read →</a>
+        </div>
+      </div>
+
+      <div class="article-card">
+        <div class="art-img fashion">
+          👔
+          <div class="art-cat-badge fashion">Fashion</div>
+        </div>
+        <div class="art-body">
+          <h3><a href="#">How to Dress Smart on a Budget — Complete Style Guide</a></h3>
+          <p>Looking sharp doesn't have to cost a fortune. This practical guide shows you exactly how to build a stylish wardrobe for less.</p>
+        </div>
+        <div class="art-footer">
+          <div>
+            <div class="art-author">Ali Khan</div>
+            <div class="art-date">April 25, 2026</div>
+          </div>
+          <a href="#" class="art-link">Read →</a>
+        </div>
+      </div>
+
+      <div class="article-card">
+        <div class="art-img business">
+          📈
+          <div class="art-cat-badge business">Business</div>
+        </div>
+        <div class="art-body">
+          <h3><a href="#">Freelancing in Pakistan — How to Earn in Dollars From Home</a></h3>
+          <p>A step-by-step guide for Pakistanis who want to start freelancing and build a sustainable income online in 2026.</p>
+        </div>
+        <div class="art-footer">
+          <div>
+            <div class="art-author">Ali Khan</div>
+            <div class="art-date">April 23, 2026</div>
+          </div>
+          <a href="#" class="art-link">Read →</a>
+        </div>
+      </div>
+
+      <div class="article-card">
+        <div class="art-img health">
+          🥗
+          <div class="art-cat-badge health">Health</div>
+        </div>
+        <div class="art-body">
+          <h3><a href="#">Best Diet Plan for Weight Loss Without Starving Yourself</a></h3>
+          <p>Forget crash diets. This balanced, sustainable eating plan helps you lose weight while still enjoying your food.</p>
+        </div>
+        <div class="art-footer">
+          <div>
+            <div class="art-author">Ali Khan</div>
+            <div class="art-date">April 21, 2026</div>
+          </div>
+          <a href="#" class="art-link">Read →</a>
+        </div>
+      </div>
+
+      <div class="article-card">
+        <div class="art-img tech">
+          📱
+          <div class="art-cat-badge tech">Tech</div>
+        </div>
+        <div class="art-body">
+          <h3><a href="#">Top 5 Smartphones Under 50,000 PKR Worth Buying in 2026</a></h3>
+          <p>We tested the best budget smartphones available in Pakistan right now. Here are our top picks with honest reviews.</p>
+        </div>
+        <div class="art-footer">
+          <div>
+            <div class="art-author">Ali Khan</div>
+            <div class="art-date">April 19, 2026</div>
+          </div>
+          <a href="#" class="art-link">Read →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MORE ARTICLES -->
+    <div class="sec-title">
+      <div class="dot"></div>
+      <h2>More From The Blog</h2>
+      <div class="line"></div>
+    </div>
+    <div class="list-articles">
+
+      <div class="list-card">
+        <div class="list-img business">📊</div>
+        <div class="list-body">
+          <div class="list-cat business">Business</div>
+          <h3>How to Open a Successful Online Shop in Pakistan — Step by Step</h3>
+          <p>From product selection to delivery — everything you need to launch a profitable e-commerce store in Pakistan.</p>
+          <div class="list-meta">Ali Khan &bull; April 17, 2026 &bull; 6 min read</div>
+        </div>
+      </div>
+
+      <div class="list-card">
+        <div class="list-img fashion">👗</div>
+        <div class="list-body">
+          <div class="list-cat fashion">Fashion</div>
+          <h3>Pakistani Lawn Suits 2026 — Best Brands and Where to Buy Online</h3>
+          <p>Detailed comparison of the top lawn brands in Pakistan for summer 2026, including pricing and quality reviews.</p>
+          <div class="list-meta">Ali Khan &bull; April 15, 2026 &bull; 5 min read</div>
+        </div>
+      </div>
+
+      <div class="list-card">
+        <div class="list-img health">💊</div>
+        <div class="list-body">
+          <div class="list-cat health">Health</div>
+          <h3>Natural Remedies for Back Pain — What Actually Works</h3>
+          <p>Millions suffer from back pain daily. These natural, doctor-approved remedies provide real relief without medication.</p>
+          <div class="list-meta">Ali Khan &bull; April 13, 2026 &bull; 4 min read</div>
+        </div>
+      </div>
+
+      <div class="list-card">
+        <div class="list-img tech">🔒</div>
+        <div class="list-body">
+          <div class="list-cat tech">Tech</div>
+          <h3>How to Stay Safe Online — Complete Cybersecurity Guide for 2026</h3>
+          <p>Hackers are getting smarter. This guide teaches you how to protect your accounts, data, and devices from online threats.</p>
+          <div class="list-meta">Ali Khan &bull; April 11, 2026 &bull; 7 min read</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="sidebar-widget">
+      <div class="widget-title">Popular Articles</div>
+      <div class="widget-body">
+        <div class="popular-item">
+          <div class="pop-num">01</div>
+          <div>
+            <div class="pop-title">10 Daily Habits That Transform Your Health</div>
+            <div class="pop-cat">Health &bull; 8 min read</div>
+          </div>
+        </div>
+        <div class="popular-item">
+          <div class="pop-num">02</div>
+          <div>
+            <div class="pop-title">Best Free AI Tools for Students 2026</div>
+            <div class="pop-cat">Tech &bull; 5 min read</div>
+          </div>
+        </div>
+        <div class="popular-item">
+          <div class="pop-num">03</div>
+          <div>
+            <div class="pop-title">Freelancing in Pakistan — Earn in Dollars</div>
+            <div class="pop-cat">Business &bull; 6 min read</div>
+          </div>
+        </div>
+        <div class="popular-item">
+          <div class="pop-num">04</div>
+          <div>
+            <div class="pop-title">Top Fashion Trends This Summer</div>
+            <div class="pop-cat">Fashion &bull; 4 min read</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-widget">
+      <div class="widget-title">Categories</div>
+      <div class="widget-body">
+        <ul class="cat-list">
+          <li><a href="#">&#9670; Health</a><span class="cat-count">24</span></li>
+          <li><a href="#">&#9670; Technology</a><span class="cat-count">18</span></li>
+          <li><a href="#">&#9670; Fashion</a><span class="cat-count">15</span></li>
+          <li><a href="#">&#9670; Business</a><span class="cat-count">21</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sidebar-widget">
+      <div class="widget-title">Newsletter</div>
+      <div class="widget-body">
+        <div class="newsletter-form">
+          <p>Get the latest articles delivered straight to your inbox every week.</p>
+          <input type="email" placeholder="Your email address">
+          <button>Subscribe Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-widget">
+      <div class="widget-title">Popular Tags</div>
+      <div class="widget-body">
+        <div class="tags">
+          <a href="#" class="tag">Health</a>
+          <a href="#" class="tag">Technology</a>
+          <a href="#" class="tag">Fashion</a>
+          <a href="#" class="tag">Business</a>
+          <a href="#" class="tag">Diet</a>
+          <a href="#" class="tag">AI Tools</a>
+          <a href="#" class="tag">Freelancing</a>
+          <a href="#" class="tag">Style</a>
+          <a href="#" class="tag">Fitness</a>
+          <a href="#" class="tag">Online Earning</a>
+          <a href="#" class="tag">Smartphone</a>
+          <a href="#" class="tag">Pakistan</a>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="logo" href="#">AliBloggerSite</a>
+      <p>Your go-to source for the latest articles on Health, Technology, Fashion, and Business. Quality content published every week.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Categories</h4>
+      <ul>
+        <li><a href="#">Health</a></li>
+        <li><a href="#">Technology</a></li>
+        <li><a href="#">Fashion</a></li>
+        <li><a href="#">Business</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <ul>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Twitter / X</a></li>
+        <li><a href="#">YouTube</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    Copyright &copy; 2026 <span>AliBloggerSite</span>. All Rights Reserved.
+  </div>
+</footer>
+
+</body>
+</html>
